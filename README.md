@@ -1,5 +1,5 @@
 # quorum-tessera-raft
-Quorum with Tessera using Raft consensus algorithm for multiple node setup.
+Quorum with Tessera using Raft consensus algorithm for multiple node setup without docker.
 
 
 
