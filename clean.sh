@@ -1,5 +1,5 @@
 #!/bin/bash
-num=5
+node_number=5
 
 echo '################################'
 echo '#             Clean            #'
@@ -14,7 +14,7 @@ killall -9 java
 
 echo '[3] delete files.'
 n=1
-while (( $n<=$num ))
+while (( $n<=$node_number ))
 do
     qd=qdata_$n
     rm -rf $qd

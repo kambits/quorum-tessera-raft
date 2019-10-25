@@ -5,7 +5,7 @@ echo '################################'
 echo '#   Configuring for '$node_number' nodes.   #'
 echo '################################'
 ### Create directories for each node's configuration ###
-
+echo '################################'
 echo '[1] create the folders'
 
 
@@ -42,7 +42,7 @@ echo "]" >> static-nodes.json
 
 ### copy static-nodes.json in to qdata_n/dd folder #############################
 
-echo '[3] copy static-nodes.json in to dd folder'
+echo '[3] copy static-nodes.json into qdata folder'
 n=1
 while (( $n<=$node_number ))
 do
@@ -221,6 +221,6 @@ let n++
 done
 
 
-echo '#################################'
-echo '#             DONE!             #'
-echo '#################################'
+echo '################################'
+echo '#             DONE!            #'
+echo '################################'
