@@ -23,24 +23,20 @@ Tessera 0.10.0
 
 # How to use
 
-## Edit node number
-
-Change the `node_number` at the `setup.sh` ,`start.sh` and `clean.sh`on the line 2. The default `node_number` is 5.
-
-
-
 ## Create files
 
 ```
-bash setup.sh
+bash setup.sh <node numbers>
 ```
 
-This shell script will create all files the Quorum and Tessera need including Tessera 0.10.0.
+This shell script will create all files for Quorum and Tessera needed including Tessera 0.10.0.
+
+`node number` is quorum numbers you want to setup.
 
 ## Start Quorum and Tessera
 
 ```
-bash start.sh
+bash start.sh <node numbers>
 ```
 
 This shell script will start Tessera and Quorum.
@@ -50,7 +46,7 @@ This shell script will start Tessera and Quorum.
 ## clean
 
 ```
-bash clean.sh
+bash clean.sh <node numbers>
 ```
 
 This shell script will stop all Java processes and geth processes.
@@ -60,7 +56,7 @@ This shell script will stop all Java processes and geth processes.
 ## Easy test
 
 ```
-bash re-setup.sh
+bash re-setup.sh <node numbers>
 ```
 
 This shell script will execuate `clean.sh`, `setup.sh` and `start.sh`.

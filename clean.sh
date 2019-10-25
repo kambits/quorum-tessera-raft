@@ -1,5 +1,5 @@
 #!/bin/bash
-node_number=5
+node_number=$1
 
 echo '################################'
 echo '#             Clean            #'
@@ -20,6 +20,7 @@ do
     rm -rf $qd
     let n++
 done
+rm -rf tessera.jar
 
 echo '################################'
 echo '#             DONE!            #'

@@ -1,5 +1,5 @@
 #!/bin/bash
-node_number=5
+node_number=$1
 ip=$(hostname -i)
 echo '################################'
 echo '#   Configuring for '$node_number' nodes.   #'
