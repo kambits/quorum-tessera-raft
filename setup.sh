@@ -160,7 +160,7 @@ n=1
 while (( $n<=$node_number ))
 do
     sep=`[[ $n != 1 ]] && echo ","`
-    nodelist=${nodelist}${sep}'{"url":"http://'${ip}':$[$n+9000]"}'
+    nodelist=${nodelist}${sep}'{"url":"http://'${ip}':'$[$n+9000]'"}'
     let n++
 done
 
