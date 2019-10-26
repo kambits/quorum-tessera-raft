@@ -110,7 +110,7 @@ EOF
 
 #### Copy genesis.json into qdata_n folder #######################
 
-echo '[5] Creating Ether accounts and genesis.json.'
+echo '[5] copy genesis.json into qdata folder.'
 
 n=1
 while (( $n<=$node_number ))
