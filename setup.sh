@@ -182,7 +182,7 @@ cat >> ${qd}/config.json <<EOF
     {
         "app":"ThirdParty",
         "enabled": true,
-        "serverAddress": "http://${ip}:908${n}",
+        "serverAddress": "http://${ip}:$[$n+9080]",
         "communicationType" : "REST"
     },
     {
@@ -194,7 +194,7 @@ cat >> ${qd}/config.json <<EOF
     {
         "app":"P2P",
         "enabled": true,
-        "serverAddress":"http://${ip}:900${n}",
+        "serverAddress":"http://${ip}:$[$n+9000]",
         "sslConfig": {
             "tls": "OFF"
         },
