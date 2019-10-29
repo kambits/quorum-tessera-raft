@@ -9,7 +9,7 @@ Quorum with Tessera using Raft consensus algorithm for multiple node setup witho
 
 # ENV requirement
 
-## Test system version
+Test system version: Ubuntu 18.04 LTS
 
 Go 1.12.5
 
@@ -51,7 +51,7 @@ This shell script will start Tessera and Quorum.
 bash clean.sh <node numbers>
 ```
 
-This shell script will stop all Java processes and geth processes.
+This shell script will stop all Java processes and geth processes and delete all files.
 
 
 
