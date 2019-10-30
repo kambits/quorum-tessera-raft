@@ -126,7 +126,7 @@ do
     let n++
 done
 rm -rf passwords.txt
-# rm -rf keystore
+rm -rf keystore
 rm -rf genesis.json 
 
 
