@@ -9,6 +9,8 @@ echo '################################'
 echo '[1] create the folders'
 
 
+account_numbers=50
+
 n=1
 while (( $n<=$node_number ))
 do
@@ -65,16 +67,16 @@ cat > genesis.json <<EOF
 EOF
 
 n=1
-while (( $n<=$node_number ))
+while (( $n<=$account_numbers ))
 do
     qd=qdata_$n
 
     # Generate an Ether account for the node
-    touch $qd/passwords.txt
-    account=`geth --datadir="$qd"/dd --password "$qd"/passwords.txt account new | cut -c 11-50`
-
+    touch passwords.txt
+    account=`geth --datadir=./ --password ./passwords.txt account new | cut -c 11-50`
+    
     # Add the account to the genesis block so it has some Ether at start-up
-    sep=`[[ $n != $node_number ]] && echo ","`
+    sep=`[[ $n != $account_numbers ]] && echo ","`
     cat >> genesis.json <<EOF
     "0x${account}": {
       "balance": "1000000000000000000000000000"
@@ -110,16 +112,21 @@ EOF
 
 #### Copy genesis.json into qdata_n folder #######################
 
-echo '[5] copy genesis.json into qdata folder.'
+echo '[5] copy accounts keystore files and genesis.json into qdata folder.'
+
+
 
 n=1
 while (( $n<=$node_number ))
 do
     qd=qdata_$n
+    touch $qd/passwords.txt
+    cp -R keystore $qd/dd
     cp genesis.json $qd/genesis.json
     let n++
 done
-
+rm -rf passwords.txt
+# rm -rf keystore
 rm -rf genesis.json 
 
 
