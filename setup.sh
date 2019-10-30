@@ -4,10 +4,9 @@ ip=$(hostname -i)
 echo '################################'
 echo '#   Configuring for '$node_number' nodes.   #'
 echo '################################'
-### Create directories for each node's configuration ###
-echo '################################'
-echo '[1] create the folders'
 
+### Create directories for each node's configuration ###
+echo '[1] create the folders'
 
 n=1
 while (( $n<=$node_number ))
@@ -18,9 +17,9 @@ do
     let n++
 done
 
-### Make static-nodes.json and store keys ###
+### create static-nodes.json and nodekeys ###
 
-echo '[2] Creating Enodes and static-nodes.json.'
+echo '[2] Creating nodekeys and static-nodes.json.'
 
 echo "[" > static-nodes.json
 n=1
@@ -40,7 +39,7 @@ do
 done
 echo "]" >> static-nodes.json
 
-### copy static-nodes.json in to qdata_n/dd folder #############################
+### copy static-nodes.json in to qdata_n/dd folder ###
 
 echo '[3] copy static-nodes.json into qdata folder'
 n=1
@@ -55,7 +54,7 @@ do
 done
 rm -rf static-nodes.json
 
-#### Create accounts, keys and genesis.json file #######################
+#### Create accounts, keys and genesis.json file ####
 
 echo '[4] Creating Ether accounts and genesis.json.'
 
