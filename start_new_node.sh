@@ -10,7 +10,7 @@ killall -9 geth
 echo '[0] stop Tessera'
 killall -9 java
 
-sleep 3
+sleep 10
 ### start Tessera ###
 echo '[1] start Tessera.'
 n=1
@@ -21,7 +21,7 @@ do
         let n++
         continue
     fi  
-    
+
     java -jar tessera.jar -configfile $qd/config.json >> $qd/logs/tessera.log 2>&1 &
 
     sleep 1
