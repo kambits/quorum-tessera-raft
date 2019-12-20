@@ -121,7 +121,7 @@ do
         let n++
         continue
     fi
-    echo `writing ${qd}/config.json`
+    echo 'writing '${qd}'/config.json]'
 
 cat >> ${qd}/config.json <<EOF
 {
