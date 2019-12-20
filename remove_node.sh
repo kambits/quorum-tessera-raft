@@ -29,6 +29,7 @@ while (( $n<$node_index ))
 do  
     qd=qdata_$n
     if [ -d "$qd" ]; then 
+        echo "1.Found #$n"
         found=1
         break
     fi
@@ -41,6 +42,7 @@ if [ ! $found ]; then
     do  
         qd=qdata_$n
         if [ -d "$qd" ]; then 
+            echo "2.Found #$n"
             found=1
             break
         fi
