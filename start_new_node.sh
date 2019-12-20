@@ -11,6 +11,8 @@ echo '[0] stop Tessera'
 killall -9 java
 
 sleep 10
+rm -rf qdata_*/tm.ipc
+
 ### start Tessera ###
 echo '[1] start Tessera.'
 n=1
