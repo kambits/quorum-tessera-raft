@@ -71,21 +71,23 @@ sleep 1
 
 ### start quorum
 echo '[4] start quorum.'
-enode=`bootnode -nodekey "$qd/dd/nodekey" -writeaddress`
+# enode=`bootnode -genkey "$qd"/dd/nodekey`
+enode=`bootnode -nodekey "$qd"/dd/nodekey -writeaddress`
 n=1
 while (( $n<=$node_index ))
 do  
     qd=qdata_$n
-    if [ ! -d "$qd" ]; then 
-        let n++
-        continue
+    if [ -d "$qd" ]; then 
+        break
     fi
-    
-    join_number=`geth --exec "raft.addPeer('enode://"$enode"@"$ip":"$[$n+30300]"?discport=0&raftport="$[$n+50400]"')" attach qdata_$n/dd/geth.ipc`
-    echo "current node: #$node_index, consortium node: #$n, join: #$join_number"
-    PRIVATE_CONFIG=$qd/tm.ipc geth --datadir $qd/dd --networkid 99999 --raftjoinexisting $join_number --permissioned --raft --rpc --rpcaddr 0.0.0.0 --rpcport "$[$n+22000]" --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --port "$[$n+30300]" --nodiscover --unlock 0 --raftport "$[$n+50400]" --verbosity 4 --password $qd/passwords.txt --miner.gaslimit 18446744073709551615 --miner.gastarget 18446744073709551615 --raftblocktime 250 1>$qd/logs/geth.log 2>$qd/logs/geth.log &
-    break
+    let n++
 done
+
+join_number=`geth --exec "raft.addPeer('enode://"$enode"@"$ip":"$[$n+30300]"?discport=0&raftport="$[$n+50400]"')" attach qdata_$n/dd/geth.ipc`
+echo "current node: #$node_index, consortium node: #$n, join: #$join_number"
+qd=qdata_$node_index
+n=$node_index
+PRIVATE_CONFIG=$qd/tm.ipc geth --datadir $qd/dd --networkid 99999 --raftjoinexisting $join_number --permissioned --raft --rpc --rpcaddr 0.0.0.0 --rpcport "$[$n+22000]" --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --port "$[$n+30300]" --nodiscover --unlock 0 --raftport "$[$n+50400]" --verbosity 4 --password $qd/passwords.txt --miner.gaslimit 18446744073709551615 --miner.gastarget 18446744073709551615 --raftblocktime 250 1>$qd/logs/geth.log 2>$qd/logs/geth.log &
 
 
 echo '################################'
