@@ -12,20 +12,20 @@ ps aux | grep geth
 
 echo '[0] stop Tessera'
 # killall -9 java
-ps aux | grep "tessera.jar -configfile qdata_$node_index" | fgrep -v grep | awk '{ print $1 }' | xargs kill -9
+ps ax | grep "tessera.jar -configfile qdata_$node_index" | fgrep -v grep | awk '{ print $1 }' | xargs kill -9
 ps aux | grep tessera
 
 sleep 1
 
 qd=qdata_$node_index
-raft_id=`cat $qd/RAFT_ID`
+raft_id=$(< $qd/RAFT_ID)
 n=1
 found=0
 while (( $n<$node_index ))
 do  
     qd=qdata_$n
     if [ -d "$qd" ]; then 
-        $found=1
+        found=1
         break
     fi
     let n++
@@ -37,7 +37,7 @@ if [ ! $found ]; then
     do  
         qd=qdata_$n
         if [ -d "$qd" ]; then 
-            $found=1
+            found=1
             break
         fi
         let n++
