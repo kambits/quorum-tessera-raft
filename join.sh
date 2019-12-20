@@ -73,6 +73,8 @@ sleep 1
 echo '[4] start quorum.'
 # enode=`bootnode -genkey "$qd"/dd/nodekey`
 enode=`bootnode -nodekey "$qd"/dd/nodekey -writeaddress`
+peer_info="enode://"$enode"@"$ip":"$[$node_index+30300]"?discport=0&raftport="$[$node_index+50400]""
+echo $peer_info
 n=1
 while (( $n<=$node_index ))
 do  
@@ -83,7 +85,7 @@ do
     let n++
 done
 
-join_number=`geth --exec "raft.addPeer('enode://"$enode"@"$ip":"$[$n+30300]"?discport=0&raftport="$[$n+50400]"')" attach qdata_$n/dd/geth.ipc`
+join_number=`geth --exec "raft.addPeer('"$peer_info"')" attach qdata_$n/dd/geth.ipc`
 echo "current node: #$node_index, consortium node: #$n, join: #$join_number"
 qd=qdata_$node_index
 n=$node_index
