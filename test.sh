@@ -1,7 +1,8 @@
 #!/bin/bash
-node_number=$1
-node_index=${2:-1}    
-ip=$(hostname -i)
-echo '################################'
-echo '#   Configuring for '$node_number' nodes.  node index: '$node_index' #'
-echo '################################'
+
+bash clean.sh 4
+bash re-setup.sh 3
+bash setup_new_node.sh 4
+bash join.sh 4
+ps -aux | grep geth 
+ps -aux | grep tessera

@@ -85,25 +85,13 @@ do
     let n++
 done
 
-join_number=`geth --exec "raft.addPeer('"$peer_info"')" attach qdata_$n/dd/geth.ipc`
-echo "current node: #$node_index, consortium node: #$n, join: #$join_number"
+raft_id=`geth --exec "raft.addPeer('"$peer_info"')" attach qdata_$n/dd/geth.ipc`
+echo "current node: #$node_index, consortium node: #$n, join: #$raft_id"
 qd=qdata_$node_index
 n=$node_index
-PRIVATE_CONFIG=$qd/tm.ipc geth --datadir $qd/dd --networkid 99999 --raftjoinexisting $join_number --permissioned --raft --rpc --rpcaddr 0.0.0.0 --rpcport "$[$n+22000]" --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --port "$[$n+30300]" --nodiscover --unlock 0 --raftport "$[$n+50400]" --verbosity 4 --password $qd/passwords.txt --miner.gaslimit 18446744073709551615 --miner.gastarget 18446744073709551615 --raftblocktime 250 1>$qd/logs/geth.log 2>$qd/logs/geth.log &
+PRIVATE_CONFIG=$qd/tm.ipc geth --datadir $qd/dd --networkid 99999 --raftjoinexisting $raft_id --permissioned --raft --rpc --rpcaddr 0.0.0.0 --rpcport "$[$n+22000]" --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --port "$[$n+30300]" --nodiscover --unlock 0 --raftport "$[$n+50400]" --verbosity 4 --password $qd/passwords.txt --miner.gaslimit 18446744073709551615 --miner.gastarget 18446744073709551615 --raftblocktime 250 1>$qd/logs/geth.log 2>$qd/logs/geth.log &
 
-
+echo "$raft_id" > $qd/RAFT_ID
 echo '################################'
 echo '#            DONE!             #'
 echo '################################'
-
-
-# n=$1  # current node
-# xnode=$2 # one node in consortium
-# ip=$(hostname -i)
-# echo '################################'
-# echo '#             Join             #'
-# echo '################################'
-# enode=`bootnode -nodekey "q$n/nodekey" -writeaddress`
-# join_number=`geth --exec "raft.addPeer('enode://"$enode"@"$ip":"$[$n+21000]"?discport=0&raftport="$[$n+30300]"')" attach q$xnode/geth.ipc`
-# echo "current node: #$n, consortium node: #$xnode, join: #$join_number"
-# PRIVATE_CONFIG=ignore nohup geth --datadir q$n --nodiscover --verbosity 5 --networkid 99999 --raft --raftport $[$n+30300] --raftjoinexisting $join_number --rpc --rpcaddr 0.0.0.0 --rpcport $[$n+22000] --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port $[$n+21000] >> q$n/geth.log 2>&1 &
