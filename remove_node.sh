@@ -36,7 +36,7 @@ do
 done
 
 if [ ! $found ]; then 
-    $n=$[$node_index+1]
+    n=$[$node_index+1]
     while (( $n<$[$node_index+50] ))
     do  
         qd=qdata_$n
