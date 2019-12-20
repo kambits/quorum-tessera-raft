@@ -36,7 +36,7 @@ do
     let n++
 done
 
-if [ ! $found ]; then 
+if [ "$found" -eq "0" ]; then 
     n=$[$node_index+1]
     echo "n: #$n"
     while (( $n<$[$node_index+50] ))
@@ -51,7 +51,7 @@ if [ ! $found ]; then
     done
 fi
 
-if [ ! $found ]; then 
+if [ "$found" -eq "0" ]; then 
     echo "No avaliable node to attach!"
     exit 1
 fi
