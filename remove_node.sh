@@ -18,7 +18,11 @@ ps aux | grep tessera
 sleep 1
 
 qd=qdata_$node_index
-raft_id=$(< $qd/RAFT_ID)
+raft_id=$node_index
+if [ -f "$qd/RAFT_ID" ]; then
+    raft_id=$(< $qd/RAFT_ID)
+fi
+
 n=1
 found=0
 while (( $n<$node_index ))
