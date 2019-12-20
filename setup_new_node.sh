@@ -102,7 +102,7 @@ echo '[8] Create the Tessera config.'
 #### Make node list for config.json ########################################
 nodelist=''
 n=1
-while (( $n<$node_index ))
+while (( $n<=$node_index ))
 do
     qd=qdata_$n
     if [ -d "$qd" ]; then 
@@ -121,6 +121,8 @@ do
         let n++
         continue
     fi
+    echo `writing ${qd}/config.json`
+
 cat >> ${qd}/config.json <<EOF
 {
 "useWhiteList": false,
