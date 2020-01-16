@@ -85,7 +85,13 @@ mv tm.pub $qd/keys/
 
 #### Complete each node's configuration ####
 
-echo '[6] Create the Tessera config.'
+echo '[6] Download the Tessera.'
+
+wget -q https://oss.sonatype.org/service/local/repositories/releases/content/com/jpmorgan/quorum/tessera-app/0.10.0/tessera-app-0.10.0-app.jar 
+
+mv tessera-app-0.10.0-app.jar tessera.jar
+
+echo '[7] Create the Tessera config.'
 
 #### Make node list for config.json ########################################
 
