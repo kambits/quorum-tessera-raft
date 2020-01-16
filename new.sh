@@ -5,7 +5,7 @@ echo '#   Configuring for new node   #'
 echo '################################'
 
 ### Create directories for each node's configuration ###
-echo '[1] create the folders'
+echo '[1] Create the folders'
 
 n=1
 qd=qd
@@ -74,7 +74,7 @@ EOF
 
 #### Creating Tessera keys ####
 
-echo '[5] create the Tessera keys.'
+echo '[5] Create the Tessera keys.'
 
 java -jar tessera.jar -keygen -filename tm < /dev/null > /dev/null
 echo "public key: $(cat tm.pub)"
@@ -116,7 +116,7 @@ cat > ${qd}/config.json <<EOF
     {
         "app":"Q2T",
         "enabled": true,
-            "serverAddress":"unix:$(pwd)/${qd}/tm.ipc",
+        "serverAddress":"unix:$(pwd)/${qd}/tm.ipc",
         "communicationType" : "REST"
     },
     {
