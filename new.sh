@@ -4,11 +4,14 @@ echo '################################'
 echo '#   Configuring for new node   #'
 echo '################################'
 
-### Create directories for each node's configuration ###
-echo '[1] Create the folders'
-
 n=1
 qd=qd
+
+echo '[1] Stop Quorum and Tessera, and clean them.'
+killall -9 geth
+killall -9 java
+rm -rf $qd
+
 mkdir -p $qd/{logs,keys}
 mkdir -p $qd/dd/geth
 
@@ -83,15 +86,7 @@ mv tm.pub $qd/keys/
 
 
 
-#### Complete each node's configuration ####
-
-echo '[6] Download the Tessera.'
-
-wget -q https://oss.sonatype.org/service/local/repositories/releases/content/com/jpmorgan/quorum/tessera-app/0.10.0/tessera-app-0.10.0-app.jar 
-
-mv tessera-app-0.10.0-app.jar tessera.jar
-
-echo '[7] Create the Tessera config.'
+echo '[6] Create the Tessera config.'
 
 #### Make node list for config.json ########################################
 
