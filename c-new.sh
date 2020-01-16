@@ -53,6 +53,8 @@ account=`geth --datadir="$qd"/dd --password "$qd"/passwords.txt account new | cu
 
 cat > $qd/genesis.json <<EOF
 {
+  "alloc": {
+  },
   "coinbase": "0x0000000000000000000000000000000000000000",
   "config": {
     "homesteadBlock": 0,
