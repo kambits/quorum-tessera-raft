@@ -1,6 +1,6 @@
 #!/bin/bash
 master_ip=$1
-ip=$(hostname -i)
+ip=${2:-$(hostname -i)}
 echo '##############################'
 echo '#   Join Tessera and Quorum  #'
 echo '##############################'
