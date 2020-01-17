@@ -8,9 +8,8 @@ n=1
 qd=qd
 
 echo '[1] Stop Tessera.'
-killall -9 java
+killall -9 java && sleep 10
 
-sleep 10
 rm -rf $qd/tm.ipc
 
 

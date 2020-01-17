@@ -10,6 +10,7 @@ qd=qd
 echo '[1] Stop Quorum and Tessera, and clean them.'
 killall -9 geth
 killall -9 java
+sleep 3
 rm -rf $qd
 
 mkdir -p $qd/{logs,keys}
