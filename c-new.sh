@@ -1,5 +1,5 @@
 #!/bin/bash
-ip=$(hostname -i)
+ip=${1:-$(hostname -i)}
 echo '################################'
 echo '#   Configuring for new node   #'
 echo '################################'
