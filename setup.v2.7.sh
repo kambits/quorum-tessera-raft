@@ -70,7 +70,7 @@ do
 
     # Generate an Ether account for the node
     touch $qd/passwords.txt
-    account=`geth --datadir="$qd"/dd --password "$qd"/passwords.txt account new | cut  -c 11-50`
+    account=`geth --datadir="$qd"/dd --password "$qd"/passwords.txt account new | head -n 4 | tail -n 1 | cut  -c 32-71`
 
     # Add the account to the genesis block so it has some Ether at start-up
     sep=`[[ $n != $node_number ]] && echo ","`
