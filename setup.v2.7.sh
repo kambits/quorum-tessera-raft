@@ -95,7 +95,8 @@ cat >> genesis.json <<EOF
     "eip155Block": 0,
     "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "eip158Block": 0,
-    "isQuorum":true
+    "isQuorum":true,
+    "maxCodeSizeConfig" : [{"block" : 0,"size" : 32}]  
   },
   "difficulty": "0x0",
   "extraData": "0x",
